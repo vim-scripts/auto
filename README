@@ -1,0 +1,21 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3341
+
+1.Modified garbled Asian languages
+2.Normal mode
+    ;;      Exit without saving
+    ,,      Save and exit
+    F5   Encoding format
+    F7   Clean ^M (which file from windows)
+3.Insert mode
+    ;;      return Normal mode
+    ,,      return Normal mode
+    mm      return Normal mode
+    <Alt-j>  Down
+    <Alt-k> Up
+    <Alt-h> Left
+    <Alt-l>  Right
+4.When writing c, cpp ,... code, the code is automatically formatted
+    For example:   you input a==3;
+    auto.vim           a  ==  3;
+5.Both c, cpp, or python,shell,perl code, F2 key to compile and debug
+
