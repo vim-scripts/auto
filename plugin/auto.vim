@@ -1,10 +1,8 @@
 "---------------------------------------------------------------------------
-"    Filename:     auto.vim
-"    Description:  Programming Automation
+"    Description:  Programming automation
 "    Author:       ywgx , vimperator@163.com
-"    Created:      Sat Nov 13 01:29:55 CST 2010
 "    Division:     Software College Northeastern University
-"    Version:      1.0
+"    Version:      1.1
 "---------------------------------------------------------------------------
 syntax on
 syntax enable
@@ -12,22 +10,22 @@ colors koehler
 filetype plugin on
 filetype indent on
 
-set undolevels=100
-set nocompatible
 set autoindent
 set smartindent
+set nocompatible
+set undolevels=100
 
+set nu
+set cin
 set magic
 set showmode
 set hlsearch
 set incsearch
-set nu
-set cin
 
 set exrc
-set backspace=2
 set ts=4
 set sw=4
+set backspace=2
 
 set wildmenu
 
@@ -58,11 +56,16 @@ au FileType cpp,c,cc,python map  mm :call CR1()<CR>
 au FileType cpp,c,cc,python map  <F2> :call CR()<CR>
 au FileType cpp,c,cc,python imap <F2> <ESC> :call CR()<CR>
 au FileType cpp,c,cc,python :call YW()
+au FileType cpp,c,cc,h nmap <Space> i <Esc>l
 
 func YW()
  inoremap , ,<space>
+ inoremap ( (<space>
+ inoremap ) )<ESC>i<space><ESC>la
  inoremap ; ;<space>
  inoremap <= <space><=<space>
+ inoremap *= <space>*=<space>
+ inoremap /= <space>/=<space>
  inoremap >> <space>>><space>
  inoremap << <space><<<space>
  inoremap >= <space>>=<space>
