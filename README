@@ -13,7 +13,8 @@ This is a mirror of http://www.vim.org/scripts/script.php?script_id=3341
     <Alt-h> Left
     <Alt-l>  Right
 4.When writing c, cpp ,... code, the code is automatically formatted
-    For example:   you input a==3;
-    auto.vim           a  ==  3;
+    For example:   If you input a==3;
+    auto.vim             a  ==  3;
 5.Both c, cpp, or python,shell,perl code, F2 key to compile and debug
+    if you on the text  terminal ,Both c, cpp, or python,shell,perl code, mm key to compile and debug
 
