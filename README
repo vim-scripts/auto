@@ -1,10 +1,9 @@
 This is a mirror of http://www.vim.org/scripts/script.php?script_id=3341
 
-1.Modified garbled Asian languages
-2.Normal mode
+1.Normal mode
     ;;      Exit without saving
     ,,      Save and exit
-3.Insert mode
+2.Insert mode
     ;;      return Normal mode
     ,,      return Normal mode
     mm      return Normal mode
@@ -12,9 +11,7 @@ This is a mirror of http://www.vim.org/scripts/script.php?script_id=3341
     <Alt-k> Up
     <Alt-h> Left
     <Alt-l>  Right
-4.When writing c, cpp ,... code, the code is automatically formatted
+3.When writing c, cpp ,... code, the code is automatically formatted
     For example:   If you input a==3;
-    auto.vim             a  ==  3;
-5.Both c, cpp, or python,shell,perl code, F2 key to compile and debug
-    if you on the text  terminal ,Both c, cpp, or python,shell,perl code, mm key to compile and debug
-
+    auto.vim                             a  ==  3;
+4.Both c, cpp, or python,shell,perl code, F2 key or "mm" to compile and debug
