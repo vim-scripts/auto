@@ -1,8 +1,9 @@
 "---------------------------------------------------------------------------
-"    Description:  Programming automation
+"    Description:  Programming Automation
+"    Help:         F2 key or "mm" to compile and debug
 "    Author:       ywgx , vimperator@163.com
-"    Division:     Software College Northeastern University
-"    Version:      1.5
+"    Version:      1.6
+"    License:      GPL v2.0
 "---------------------------------------------------------------------------
 syntax on
 syntax enable
