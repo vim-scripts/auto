@@ -1,18 +1,13 @@
 "---------------------------------------------------------------------------
 "    Description:  Programming Automation
 "    Help:         F2 key or "mm" to compile and debug
-"    Author:       ywgx , vimperator@163.com
-"    Version:      1.6
+"    Author:       ywgx.ch@gmail.com
+"    Version:      1.7
 "    License:      GPL v2.0
 "---------------------------------------------------------------------------
-syntax on
-syntax enable
-set enc=utf-8
-filetype plugin indent on
 set autoindent smartindent nocp
 set exrc ts=4 sw=4 backspace=2 softtabstop=4
 set nu cin magic showmode hlsearch incsearch wildmenu
-set fileencodings=utf-8,gbk,ucs-bom,cp936,gb2312,gb18030
 im  ,, <ESC>
 im  ;; <ESC>
 map <Up>   gk
@@ -48,7 +43,7 @@ func Cc()
 	ino += <space>+=<space>
 	ino && <space>&&<space>
 	ino != <space>!=<space>
-	nm<Space> i <Esc>l
+	nm<Space> i<Space> <Esc>l
 	im<silent> mm <ESC>A;<ESC>
 	im<silent> nn <ESC>A;<ESC>o
 	nm<silent> # :<esc>i<esc>i#
@@ -75,12 +70,12 @@ func CR()
 	elsei &filetype == 'python'
 		exe "!clear;python %"
 	elsei &filetype == 'ruby'
-		exe "!clear;ruby -d %"
+		exe "!clear;ruby  %"
 	elsei &filetype == 'sh'
 		exe "!clear;bash %"
 	elsei &filetype == 'pl'
 		exe "!clear;perl %"
-	endif
+	en
 endf
 func CR1()
 	exe "w"
@@ -93,10 +88,10 @@ func CR1()
 	elsei &filetype == 'python'
 		exe "!python %"
 	elsei &filetype == 'ruby'
-		exe "!ruby -d %"
+		exe "!ruby  %"
 	elsei &filetype == 'sh'
 		exe "!bash %"
 	elsei &filetype == 'pl'
 		exe "!perl %"
-	endif
+	en
 endf
