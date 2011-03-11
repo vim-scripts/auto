@@ -1,20 +1,20 @@
 "---------------------------------------------------------------------------
-"    Description:  Programming Automation
+"    DESCription:  Programming Automation
 "    Help:         F2 key or "mm" to compile and debug
 "    Author:       ywgx.ch@gmail.com
-"    Version:      1.7
+"    Version:      1.8
 "    License:      GPL v2.0
 "---------------------------------------------------------------------------
-set autoindent smartindent nocp
-set exrc ts=4 sw=4 backspace=2 softtabstop=4
-set nu cin magic showmode hlsearch incsearch wildmenu
+se ai si nocp
+se exrc ts=4 sw=4 bs=2 sts=4
+se nu cin magic smd hls is wmnu
 im  ,, <ESC>
 im  ;; <ESC>
 map <Up>   gk
 map <Down> gj
 no! <M-k> <Up>
 no! <M-j> <Down>
-no! <M-h> <left>
+no! <M-h> <Left>
 no! <M-l> <Right>
 nm <silent> ;; :q!<CR>
 nm <silent> ,, :wqa<CR>
@@ -26,35 +26,35 @@ func Py()
 	im <F2> <ESC>
 	if exists("$DISPLAY")
 		nm <F2> :call CR()<CR>
-	else
+	el
 		nm <F2> :call CR1()<CR>
 	en
 endf
 func Cc()
-	ino , ,<space>
-	ino ; ;<space>
-	ino <= <space><=<space>
-	ino *= <space>*=<space>
-	ino /= <space>/=<space>
-	ino >> <space>>><space>
-	ino << <space><<<space>
-	ino >= <space>>=<space>
-	ino == <space>==<space>
-	ino += <space>+=<space>
-	ino && <space>&&<space>
-	ino != <space>!=<space>
-	nm<Space> i<Space> <Esc>l
+	ino , ,<SPACE>
+	ino ; ;<SPACE>
+	ino <= <SPACE><=<SPACE>
+	ino *= <SPACE>*=<SPACE>
+	ino /= <SPACE>/=<SPACE>
+	ino >> <SPACE>>><SPACE>
+	ino << <SPACE><<<SPACE>
+	ino >= <SPACE>>=<SPACE>
+	ino == <SPACE>==<SPACE>
+	ino += <SPACE>+=<SPACE>
+	ino && <SPACE>&&<SPACE>
+	ino != <SPACE>!=<SPACE>
+	nm<SPACE> i<SPACE> <Esc>l
 	im<silent> mm <ESC>A;<ESC>
 	im<silent> nn <ESC>A;<ESC>o
-	nm<silent> # :<esc>i<esc>i#
+	nm<silent> # :<ESC>i<ESC>i#
 	if exists("$DISPLAY")
+		nm mm :call CR1()<CR><CR>
 		nm<F2> :call CR()<CR><CR>
 		im<F2> <ESC> :call CR()<CR><CR>
-		nm mm :call CR1()<CR><CR>
-	else
+	el
+		nm mm :call CR1()<CR>
 		nm<F2> :call CR1()<CR>
 		im<F2> <ESC> :call CR1()<CR>
-		nm mm :call CR1()<CR>
 	en
 	nm<silent> ca I/*<ESC><left>A<ESC><left>
 	nm<silent> cd :s/\/\*//g<cr><ESC>:s/\*\///g<cr><ESC>
