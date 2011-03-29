@@ -1,6 +1,6 @@
 This is a mirror of http://www.vim.org/scripts/script.php?script_id=3341
 
-auto.vim  Only for linux 
+auto.vim  only for GNU/Linux 
 1.Normal mode
     ;;      Exit without saving
     ,,      Save and exit

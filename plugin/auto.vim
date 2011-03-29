@@ -2,36 +2,28 @@
 "    DESCription:  Programming Automation
 "    Help:         F2 key or "mm" to compile and debug
 "    Author:       ywgx.ch@gmail.com
-"    Version:      1.8
+"    Version:      1.9
 "    License:      GPL v2.0
 "---------------------------------------------------------------------------
 se ai si nocp
-se exrc ts=4 sw=4 bs=2 sts=4
-se nu cin magic smd hls is wmnu
+se nu is cin smd wmnu magic
+se exrc ts=4 sw=4 sts=4 backspace=2
 im  ,, <ESC>
 im  ;; <ESC>
-map <Up>   gk
-map <Down> gj
-no! <M-k> <Up>
-no! <M-j> <Down>
-no! <M-h> <Left>
-no! <M-l> <Right>
-nm <silent> ;; :q!<CR>
-nm <silent> ,, :wqa<CR>
+map<Up>   gk
+map<Down> gj
+no!<M-k> <Up>
+no!<M-j> <Down>
+no!<M-h> <Left>
+no!<M-l> <Right>
+nm<silent> ;; :q!<CR>
+nm<silent> ,, :wq<CR>
+au BufRead,BufNewFile *.html setf html
 au FileType python,ruby :call Py()
-au FileType cpp,c,cc,h :call Cc()
-func Py()
-	nm mm :call CR1()<CR>
-	im mm <ESC>
-	im <F2> <ESC>
-	if exists("$DISPLAY")
-		nm <F2> :call CR()<CR>
-	el
-		nm <F2> :call CR1()<CR>
-	en
-endf
-func Cc()
-	ino , ,<SPACE>
+au FileType cpp,c,cc,h,html,perl :call Cc()
+au FileType c,cc,cpp,h,html,python :call Cp()
+func Cp()
+    ino , ,<SPACE>
 	ino ; ;<SPACE>
 	ino <= <SPACE><=<SPACE>
 	ino *= <SPACE>*=<SPACE>
@@ -42,24 +34,41 @@ func Cc()
 	ino == <SPACE>==<SPACE>
 	ino += <SPACE>+=<SPACE>
 	ino && <SPACE>&&<SPACE>
-	ino != <SPACE>!=<SPACE>
-	nm<SPACE> i<SPACE> <Esc>l
-	im<silent> mm <ESC>A;<ESC>
-	im<silent> nn <ESC>A;<ESC>o
+endf
+func Py()
+	nm mm :call CrText()<CR>
+	im mm <ESC>$
+	im nn <ESC>o
+	im <F2> <ESC>
+	if exists("$DISPLAY")
+		nm <F2> :call Cr()<CR>
+	el
+		nm <F2> :call CrText()<CR>
+	en
+endf
+func Cc()
+	no != <SPACE>!=<SPACE>
+    im mm <ESC>A;<ESC>
+	im nn <ESC>A;<ESC>o
 	nm<silent> # :<ESC>i<ESC>i#
 	if exists("$DISPLAY")
-		nm mm :call CR1()<CR><CR>
-		nm<F2> :call CR()<CR><CR>
-		im<F2> <ESC> :call CR()<CR><CR>
+		if &filetype == 'perl'
+		   nm mm :call CrText()<CR>
+		   nm<F2> :call Cr()<CR>
+		   im<F2> <ESC> :call Cr()<CR>
+	    el
+		   nm mm :call CrText()<CR><CR>
+		   nm mm :call CrText()<CR><CR>
+		   nm<F2> :call Cr()<CR><CR>
+		   im<F2> <ESC> :call Cr()<CR><CR>
+		en
 	el
-		nm mm :call CR1()<CR>
-		nm<F2> :call CR1()<CR>
-		im<F2> <ESC> :call CR1()<CR>
+		nm<F2> :call CrText()<CR>
+		im<F2> <ESC> :call CrText()<CR>
+		nm mm :call CrText()<CR>
 	en
-	nm<silent> ca I/*<ESC><left>A<ESC><left>
-	nm<silent> cd :s/\/\*//g<cr><ESC>:s/\*\///g<cr><ESC>
 endf
-func CR()
+func Cr()
 	exe "w"
 	if &filetype == 'c'
 		exe "!gcc -Wall % -o %<"
@@ -73,11 +82,11 @@ func CR()
 		exe "!clear;ruby  %"
 	elsei &filetype == 'sh'
 		exe "!clear;bash %"
-	elsei &filetype == 'pl'
+	elsei &filetype == 'perl'
 		exe "!clear;perl %"
 	en
 endf
-func CR1()
+func CrText()
 	exe "w"
 	if &filetype == 'c'
 		exe "!gcc -Wall % -o %<"
@@ -91,7 +100,9 @@ func CR1()
 		exe "!ruby  %"
 	elsei &filetype == 'sh'
 		exe "!bash %"
-	elsei &filetype == 'pl'
+	elsei &filetype == 'perl'
 		exe "!perl %"
+	elsei &filetype =='html'
+		exe "!firefox %"
 	en
 endf
