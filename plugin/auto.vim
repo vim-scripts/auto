@@ -2,7 +2,7 @@
 "    DESCription:  Programming Automation
 "    Help:         F2 key or "mm" to compile and debug
 "    Author:       ywgx.ch@gmail.com
-"    Version:      1.9
+"    Version:      2.0
 "    License:      GPL v2.0
 "---------------------------------------------------------------------------
 se ai si nocp
@@ -19,7 +19,7 @@ no!<M-l> <Right>
 nm<silent> ;; :q!<CR>
 nm<silent> ,, :wq<CR>
 au BufRead,BufNewFile *.html setf html
-au FileType python,ruby :call Py()
+au FileType python,ruby,sh :call Py()
 au FileType cpp,c,cc,h,html,perl :call Cc()
 au FileType c,cc,cpp,h,html,python :call Cp()
 func Cp()
@@ -36,39 +36,38 @@ func Cp()
 	ino && <SPACE>&&<SPACE>
 endf
 func Py()
-	nm mm :call CrText()<CR>
+	nm mm :call Ct()<CR>
 	im mm <ESC>$
 	im nn <ESC>o
 	im <F2> <ESC>
 	if exists("$DISPLAY")
-		nm <F2> :call Cr()<CR>
+		nm <F2> :call Cv()<CR>
 	el
-		nm <F2> :call CrText()<CR>
+		nm <F2> :call Ct()<CR>
 	en
 endf
 func Cc()
 	no != <SPACE>!=<SPACE>
     im mm <ESC>A;<ESC>
 	im nn <ESC>A;<ESC>o
-	nm<silent> # :<ESC>i<ESC>i#
 	if exists("$DISPLAY")
 		if &filetype == 'perl'
-		   nm mm :call CrText()<CR>
-		   nm<F2> :call Cr()<CR>
-		   im<F2> <ESC> :call Cr()<CR>
+		   nm mm :call Ct()<CR>
+		   nm<F2> :call Cv()<CR>
+		   im<F2> <ESC> :call Cv()<CR>
 	    el
-		   nm mm :call CrText()<CR><CR>
-		   nm mm :call CrText()<CR><CR>
-		   nm<F2> :call Cr()<CR><CR>
-		   im<F2> <ESC> :call Cr()<CR><CR>
+		   nm mm :call Ct()<CR><CR>
+		   nm mm :call Ct()<CR><CR>
+		   nm<F2> :call Cv()<CR><CR>
+		   im<F2> <ESC> :call Cv()<CR><CR>
 		en
 	el
-		nm<F2> :call CrText()<CR>
-		im<F2> <ESC> :call CrText()<CR>
-		nm mm :call CrText()<CR>
+		nm<F2> :call Ct()<CR>
+		im<F2> <ESC> :call Ct()<CR>
+		nm mm :call Ct()<CR>
 	en
 endf
-func Cr()
+func Cv()
 	exe "w"
 	if &filetype == 'c'
 		exe "!gcc -Wall % -o %<"
@@ -86,7 +85,7 @@ func Cr()
 		exe "!clear;perl %"
 	en
 endf
-func CrText()
+func Ct()
 	exe "w"
 	if &filetype == 'c'
 		exe "!gcc -Wall % -o %<"
