@@ -1,13 +1,12 @@
 "---------------------------------------------------------------------------
-"    DESCription:  Programming Automation
-"    Help:         F2 key or "mm" to compile and debug
+"    Description:  Programming Automation
 "    Author:       ywgx.ch@gmail.com
-"    Version:      2.0
+"    Created:      2011/11/22 00:33:31
 "    License:      GPL v2.0
+"    Version:      2.1
 "---------------------------------------------------------------------------
-se ai si nocp
+se nocp exrc
 se nu is cin smd wmnu magic
-se exrc ts=4 sw=4 sts=4 backspace=2
 im  ,, <ESC>
 im  ;; <ESC>
 map<Up>   gk
@@ -22,8 +21,8 @@ au BufRead,BufNewFile *.html setf html
 au FileType python,ruby,sh :call Py()
 au FileType cpp,c,cc,h,html,perl :call Cc()
 au FileType c,cc,cpp,h,html,python :call Cp()
-func Cp()
-    ino , ,<SPACE>
+fu Cp()
+        ino , ,<SPACE>
 	ino ; ;<SPACE>
 	ino <= <SPACE><=<SPACE>
 	ino *= <SPACE>*=<SPACE>
@@ -35,7 +34,7 @@ func Cp()
 	ino += <SPACE>+=<SPACE>
 	ino && <SPACE>&&<SPACE>
 endf
-func Py()
+fu Py()
 	nm mm :call Ct()<CR>
 	im mm <ESC>$
 	im nn <ESC>o
@@ -46,7 +45,7 @@ func Py()
 		nm <F2> :call Ct()<CR>
 	en
 endf
-func Cc()
+fu Cc()
 	no != <SPACE>!=<SPACE>
     im mm <ESC>A;<ESC>
 	im nn <ESC>A;<ESC>o
@@ -67,7 +66,7 @@ func Cc()
 		nm mm :call Ct()<CR>
 	en
 endf
-func Cv()
+fu Cv()
 	exe "w"
 	if &filetype == 'c'
 		exe "!gcc -Wall % -o %<"
@@ -85,7 +84,7 @@ func Cv()
 		exe "!clear;perl %"
 	en
 endf
-func Ct()
+fu Ct()
 	exe "w"
 	if &filetype == 'c'
 		exe "!gcc -Wall % -o %<"
@@ -104,4 +103,14 @@ func Ct()
 	elsei &filetype =='html'
 		exe "!firefox %"
 	en
+endf
+au FileType h,c,cc,cpp,sh,perl,python :call YWcode()
+fu YWcode()
+	se ai si
+	se sw=4 ts=4 sts=4
+endf
+au FileType ruby :call YWruby()
+fu YWruby()
+	se ai si
+	se sw=2 ts=2 sts=2
 endf
